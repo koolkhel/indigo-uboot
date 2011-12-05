@@ -1,0 +1,10 @@
+#!/bin/sh
+
+#export PATH=/usr/local/arm/newarm/bin:${PATH}
+#rm /tftpboot/uboot
+
+#make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- clean all
+make ARCH=arm CROSS_COMPILE=arm-indigo-linux-gnueabi-
+
+#cp ./u-boot.bin /tftpboot/uboot
+#cp u-boot.bin /tftpboot/u-boot.bin

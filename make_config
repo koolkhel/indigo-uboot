@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#export PATH=/usr/local/arm/newarm/bin:${PATH}
+
+# run once for config, after may be comment for fast build
+#make at91sam9260ek_dataflash_cs0_config
+#make at91sam9m10g45ek_nandflash_config
+
+
+make ARCH=arm CROSS_COMPILE=arm-indigo-linux-gnueabi- at91sam9m10g45ek_nandflash_config
+
