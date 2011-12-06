@@ -34,7 +34,7 @@
 #include "malloc.h"
 #endif
 
-unsigned yaffs_traceMask = 0x0; /* Disable logging */
+unsigned yaffs_traceMask = 0; /* Disable logging */
 static int yaffs_errno = 0;
 
 void yaffsfs_SetError(int err)
@@ -99,6 +99,8 @@ static yaffs_Device bootDev;
 static yaffs_Device flashDev;
 #endif
 
+static yaffs_Device rootDev;
+
 static yaffsfs_DeviceConfiguration yaffsfs_config[] = {
 /* XXX U-BOOT XXX */
 #if 0
@@ -130,38 +132,7 @@ int yaffs_StartUp(void)
 
 	// Set up devices
 
-/* XXX U-BOOT XXX */
-#if 0
-	// /ram
-	ramDev.nBytesPerChunk = 512;
-	ramDev.nChunksPerBlock = 32;
-	ramDev.nReservedBlocks = 2; // Set this smaller for RAM
-	ramDev.startBlock = 1; // Can't use block 0
-	ramDev.endBlock = 127; // Last block in 2MB.
-	ramDev.useNANDECC = 1;
-	ramDev.nShortOpCaches = 0;	// Disable caching on this device.
-	ramDev.genericDevice = (void *) 0;	// Used to identify the device in fstat.
-	ramDev.writeChunkWithTagsToNAND = yramdisk_WriteChunkWithTagsToNAND;
-	ramDev.readChunkWithTagsFromNAND = yramdisk_ReadChunkWithTagsFromNAND;
-	ramDev.eraseBlockInNAND = yramdisk_EraseBlockInNAND;
-	ramDev.initialiseNAND = yramdisk_InitialiseNAND;
-
-	// /boot
-	bootDev.nBytesPerChunk = 612;
-	bootDev.nChunksPerBlock = 32;
-	bootDev.nReservedBlocks = 5;
-	bootDev.startBlock = 1; // Can't use block 0
-	bootDev.endBlock = 127; // Last block in 2MB.
-	bootDev.useNANDECC = 0; // use YAFFS's ECC
-	bootDev.nShortOpCaches = 10; // Use caches
-	bootDev.genericDevice = (void *) 1;	// Used to identify the device in fstat.
-	bootDev.writeChunkToNAND = yflash_WriteChunkToNAND;
-	bootDev.readChunkFromNAND = yflash_ReadChunkFromNAND;
-	bootDev.eraseBlockInNAND = yflash_EraseBlockInNAND;
-	bootDev.initialiseNAND = yflash_InitialiseNAND;
-#endif
-
-		// /flash
+// /flash
 	flashDev->nReservedBlocks = 5;
 //  flashDev->nShortOpCaches = (options.no_cache) ? 0 : 10;
 	flashDev->nShortOpCaches = 10; // Use caches
@@ -185,7 +156,7 @@ int yaffs_StartUp(void)
 		nBlocks = mtd->size / mtd->erasesize;
 
 		flashDev->nCheckpointReservedBlocks = 10;
-		flashDev->startBlock = 0;
+		flashDev->startBlock = 64; // 64 * 128k = 8M
 		flashDev->endBlock = nBlocks - 1;
 	}
 	else

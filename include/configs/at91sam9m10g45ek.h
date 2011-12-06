@@ -93,6 +93,8 @@
  * Command line configuration.
  */
 #include <config_cmd_default.h>
+#undef CONFIG_CMD_NET
+#undef CONFIG_CMD_NFS
 #undef CONFIG_CMD_BDI
 #undef CONFIG_CMD_FPGA
 #undef CONFIG_CMD_IMI
@@ -100,12 +102,12 @@
 #undef CONFIG_CMD_AUTOSCRIPT
 #undef CONFIG_CMD_LOADS
 
-// #define CONFIG_YAFFS2 1
+#define CONFIG_YAFFS2 1
 
-#define CONFIG_CMD_PING		1
-#define CONFIG_CMD_DHCP		1
+#undef CONFIG_CMD_PING
+#undef CONFIG_CMD_DHCP
 #define CONFIG_CMD_NAND		1
-#define CONFIG_CMD_USB		1
+#undef CONFIG_CMD_USB
 
 // returning MMC, size probably should go up.
 
@@ -167,6 +169,7 @@
 #endif
 
 /* Ethernet */
+/*
 #define CONFIG_MACB			1
 #define CONFIG_MACB_SEARCH_PHY		1
 //#define CONFIG_RMII			1
@@ -174,18 +177,22 @@
 #define CONFIG_NET_MULTI		1
 #define CONFIG_NET_RETRY_COUNT		20
 #define CONFIG_RESET_PHY_R		1
+*/
+#undef CONFIG_MACB
 
 /* USB */
+/*
 #define CONFIG_USB_ATMEL
 #define CONFIG_USB_OHCI_NEW		1
 #define CONFIG_DOS_PARTITION		1
 #define CONFIG_SYS_USB_OHCI_CPU_INIT		1
 #define CONFIG_SYS_USB_OHCI_REGS_BASE		0x00700000	/* AT91SAM9G45_UHP_OHCI_BASE */
+/*
 #define CONFIG_SYS_USB_OHCI_SLOT_NAME		"at91sam9g45"
 #define CONFIG_SYS_USB_OHCI_MAX_ROOT_PORTS	2
 #define CONFIG_USB_STORAGE		1
 #define CONFIG_CMD_FAT		1
-
+*/
 #define CONFIG_SYS_LOAD_ADDR			0x72000000	/* load address */
 
 #define CONFIG_SYS_MEMTEST_START		PHYS_SDRAM

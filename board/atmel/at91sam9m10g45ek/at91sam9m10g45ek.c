@@ -59,14 +59,26 @@ static void at91sam9m10g45ek_nand_hw_init(void)
 		       csa | AT91_MATRIX_EBI_CS3A_SMC_SMARTMEDIA);
 
 	/* Configure SMC CS3 for NAND/SmartMedia */
+
 	at91_sys_write(AT91_SMC_SETUP(3),
 		       AT91_SMC_NWESETUP_(1) | AT91_SMC_NCS_WRSETUP_(0) |
 		       AT91_SMC_NRDSETUP_(1) | AT91_SMC_NCS_RDSETUP_(0));
 	at91_sys_write(AT91_SMC_PULSE(3),
-		       AT91_SMC_NWEPULSE_(4) | AT91_SMC_NCS_WRPULSE_(3) |
-		       AT91_SMC_NRDPULSE_(3) | AT91_SMC_NCS_RDPULSE_(2));
+		       AT91_SMC_NWEPULSE_(2) | AT91_SMC_NCS_WRPULSE_(4) |
+		       AT91_SMC_NRDPULSE_(2) | AT91_SMC_NCS_RDPULSE_(2));
 	at91_sys_write(AT91_SMC_CYCLE(3),
-		       AT91_SMC_NWECYCLE_(7) | AT91_SMC_NRDCYCLE_(4));
+		       AT91_SMC_NWECYCLE_(5) | AT91_SMC_NRDCYCLE_(5));
+
+	/*
+	at91_sys_write(AT91_SMC_SETUP(3),
+		       AT91_SMC_NWESETUP_(2) | AT91_SMC_NCS_WRSETUP_(1) |
+		       AT91_SMC_NRDSETUP_(2) | AT91_SMC_NCS_RDSETUP_(1));
+	at91_sys_write(AT91_SMC_PULSE(3),
+		       AT91_SMC_NWEPULSE_(3) | AT91_SMC_NCS_WRPULSE_(5) |
+		       AT91_SMC_NRDPULSE_(3) | AT91_SMC_NCS_RDPULSE_(3));
+	at91_sys_write(AT91_SMC_CYCLE(3),
+		       AT91_SMC_NWECYCLE_(7) | AT91_SMC_NRDCYCLE_(7));
+	*/
 	at91_sys_write(AT91_SMC_MODE(3),
 		       AT91_SMC_READMODE | AT91_SMC_WRITEMODE |
 		       AT91_SMC_EXNWMODE_DISABLE |
