@@ -62,7 +62,7 @@
 /* LCD */
 #define CONFIG_LCD			1
 #define LCD_BPP				LCD_COLOR8
-#undef CONFIG_LCD_LOGO			
+#undef CONFIG_LCD_LOGO
 //#define CONFIG_LCD_INFO_BELOW_LOGO	1
 #undef LCD_TEST_PATTERN
 #define CONFIG_LCD_INFO			1
@@ -100,12 +100,18 @@
 #undef CONFIG_CMD_AUTOSCRIPT
 #undef CONFIG_CMD_LOADS
 
+// #define CONFIG_YAFFS2 1
+
 #define CONFIG_CMD_PING		1
 #define CONFIG_CMD_DHCP		1
 #define CONFIG_CMD_NAND		1
 #define CONFIG_CMD_USB		1
 
-/*#define CONFIG_CMD_MMC		1
+// returning MMC, size probably should go up.
+
+/*
+#define MMCI_BASE 0xFFFB4000
+#define CONFIG_CMD_MMC		1
 #define CONFIG_MMC		1
 #define CONFIG_ATMEL_MCI	1
 #define CONFIG_CMD_EXT2		1
@@ -207,7 +213,7 @@
 #define CONFIG_ENV_OFFSET		0x60000
 #define CONFIG_ENV_OFFSET_REDUND	0x60000
 #define CONFIG_ENV_SIZE		0x20000		/* 1 sector = 128 kB */
-#define CONFIG_BOOTCOMMAND	"nand read 0x72000000 0x200000 0x200000; bootm"
+//#define CONFIG_BOOTCOMMAND	"nand read 0x72000000 0x200000 0x200000; bootm"
 /*pi#define CONFIG_BOOTARGS		"console=ttyS0,115200 " \
 				"root=/dev/mtdblock5 " \
 				"mtdparts=atmel_nand:128k(bootstrap)ro, \
