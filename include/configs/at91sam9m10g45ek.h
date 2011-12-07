@@ -29,6 +29,9 @@
 
 #define CONFIG_AT91_LEGACY
 
+// turn off later
+#define DEBUG 1
+
 /* ARM asynchronous clock */
 #define CONFIG_SYS_AT91_MAIN_CLOCK	12000000	/* from 12 MHz crystal */
 #define CONFIG_SYS_HZ		1000
@@ -127,8 +130,8 @@
 #define PHYS_SDRAM_SIZE			0x04000000	/* 64 megs */
 
 #define CONFIG_NR_DRAM_BANKS		1
-#define PHYS_SDRAM_1			0x70000000
-#define PHYS_SDRAM_1_SIZE		0x04000000	/* 64 megs */
+// #define PHYS_SDRAM_1			0x70000000
+// #define PHYS_SDRAM_1_SIZE		0x04000000	/* 64 megs */
 //#define PHYS_SDRAM_2			0x20000000
 //#define PHYS_SDRAM_2_SIZE		0x02000000	/* 32 megs */
 
