@@ -30,7 +30,7 @@
 #define CONFIG_AT91_LEGACY
 
 // turn off later
-#define DEBUG 1
+// #define DEBUG 1
 
 /* ARM asynchronous clock */
 #define CONFIG_SYS_AT91_MAIN_CLOCK	12000000	/* from 12 MHz crystal */
@@ -199,6 +199,7 @@
 
 #define CONFIG_SYS_LOAD_ADDR			0x72000000	/* load address */
 
+#define CONFIG_SYS_ALT_MEMTEST 1
 #define CONFIG_SYS_MEMTEST_START		PHYS_SDRAM
 #define CONFIG_SYS_MEMTEST_END			0x73e00000
 
