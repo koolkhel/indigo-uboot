@@ -76,5 +76,6 @@ void hw_watchdog_reset(void)
 void hw_watchdog_init(void)
 {
 	/* 16 seconds timer, resets enabled */
-	at91_wdt_settimeout(ms_to_ticks(WDT_HW_TIMEOUT * 1000));
+//	at91_wdt_settimeout(ms_to_ticks(WDT_HW_TIMEOUT * 1000));
+// let's not init watchdog here, linux will rule this out someday
 }

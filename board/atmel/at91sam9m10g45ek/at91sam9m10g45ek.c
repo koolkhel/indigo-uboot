@@ -30,6 +30,7 @@
 #include <asm/arch/at91_common.h>
 #include <asm/arch/at91_pmc.h>
 #include <asm/arch/at91_rstc.h>
+#include <asm/arch/at91_wdt.h>
 #include <asm/arch/clk.h>
 #include <asm/arch/gpio.h>
 #include <asm/arch/io.h>
@@ -233,7 +234,7 @@ void lcd_show_board_info(void)
 
 	lcd_printf ("%s\n", U_BOOT_VERSION);
 //	lcd_printf ("(C) 2008 ATMEL Corp\n");
-	lcd_printf ("SK-AT91SAM9G45 development board - www.starterkit.ru\n");
+	lcd_printf ("Tracker 2.1 root\n");
 	lcd_printf ("%s CPU at %s MHz\n",
 		CONFIG_SYS_AT91_CPU_NAME,
 		strmhz(temp, get_cpu_clk_rate()));
@@ -354,3 +355,45 @@ void spi_cs_deactivate(struct spi_slave *slave)
 	}
 }
 #endif /* CONFIG_ATMEL_SPI */
+
+
+/* Indigo additions for U-Boot sanity */
+
+#ifdef CONFIG_HW_WATCHDOG
+/* there's drivers/watchdog/at91sam9_wdt.c */
+#endif
+
+#ifdef CONFIG_SERIAL_TAG
+void get_board_serial(struct tag_serialnr *serial_nr)
+{
+	char *serial_low_str = NULL;
+	char *serial_high_str = NULL;
+
+	serial_low_str = getenv("serial_low");
+	if ((serial_low_str != NULL) && (strlen(serial_low_str) != 0)) {
+		serial_nr->low = simple_strtoul(serial_low_str, NULL, 16);
+	} else {
+		serial_nr->low = 0;
+	};
+
+	serial_high_str = getenv("serial_high");
+	if ((serial_high_str != NULL) && (strlen(serial_high_str) != 0)) {
+		serial_nr->high = simple_strtoul(serial_high_str, NULL, 16);
+	} else {
+		serial_nr->high = 0xFFFF0000; /* to be sure we actually set the high part */
+	};
+}
+#endif
+
+#ifdef CONFIG_REVISION_TAG
+u32 get_board_rev(void)
+{
+	u32 revision = 0;
+	char *system_rev_str = getenv("system_rev");
+
+	if (system_rev_str != NULL && strlen(system_rev_str) != 0)
+		revision = simple_strtoul(system_rev_str, NULL, 16);
+
+	return revision;
+}
+#endif
