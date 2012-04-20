@@ -85,7 +85,7 @@
 #define CONFIG_AT91SAM9G45_LCD_BASE		0x20000000 /* SDRAM */
 
 /* LED */
-#define CONFIG_AT91_LED
+#undef CONFIG_AT91_LED
 #define	CONFIG_RED_LED		AT91_PIN_PD31	/* this is the user1 led */
 #define	CONFIG_GREEN_LED	AT91_PIN_PD0	/* this is the user2 led */
 
