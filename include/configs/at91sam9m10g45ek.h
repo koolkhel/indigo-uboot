@@ -86,8 +86,8 @@
 
 /* LED */
 #undef CONFIG_AT91_LED
-#define	CONFIG_RED_LED		AT91_PIN_PD31	/* this is the user1 led */
-#define	CONFIG_GREEN_LED	AT91_PIN_PD0	/* this is the user2 led */
+#define	CONFIG_RED_LED		0xFFFF	/* this is the user1 led */
+#define	CONFIG_GREEN_LED	0xFFFF	/* this is the user2 led */
 
 #define CONFIG_BOOTDELAY	3
 
