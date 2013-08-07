@@ -59,7 +59,7 @@ void at91_serial3_hw_init(void)
 {
 	at91_pmc_t	*pmc	= (at91_pmc_t *) AT91_PMC_BASE;
 
-	at91_set_a_periph(AT91_PIO_PORTB, 12, 0);	/* DRXD */
+	at91_set_a_periph(AT91_PIO_PORTB, 12, 1);	/* DRXD */
 	at91_set_a_periph(AT91_PIO_PORTB, 13, 1);	/* DTXD */
 	writel(1 << AT91_ID_SYS, &pmc->pcer);
 }
